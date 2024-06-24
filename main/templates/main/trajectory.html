@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %} {% block content %}
+<div class="container">
+  {% if iot %} {% for id, rank, elem, dop in itog_elec %}
+  <div class="m-2 p-3" style="background-color: #dadcda">
+    <div style="display: flex">
+      <div class="col"><h2>{{rank}}</h2></div>
+      <div class="align-self-center fs-5 mx-4">{{elem}}%</div>
+    </div>
+    {% if dop %}
+    <div class="fs-6">
+      <div class="mx-2">Требуется для изучения:</div>
+      {% for id, predmet in dop %}
+      <div class="mx-4" style="color: red">{{predmet}}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %} {% else %}
+  <div><p1 class="fs-4">Выберите элективы для изучения ({{number}})</p1></div>
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="p-4 pt-2 fs-5">
+      {% for rank, elem in rank_list %}
+      <div>
+        <input
+          type="checkbox"
+          id="{{ elem }}"
+          name="selected_elec"
+          value="{{ elem }}"
+        />
+        <label for="{{ elem }}">{{rank}} {{elem}}</label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-outline-success mt-4">
+          Выбрать
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endif %} {% endblock %}

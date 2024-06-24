@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %} {% block content %}
+
+<div class="container">
+  {% for el in elec %}
+  <div class="m-2 p-3" style="background-color: #d6ffd6">
+    <h2 class="fs-4">{{ el.title_elec }}</h2>
+    <div class="fs-6">{{ el.description_elec }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
