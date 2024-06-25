@@ -1,5 +1,8 @@
 {% extends 'main/base.html' %} {% block content %}
 <div class="container">
+  <div style="display: flex; justify-content: flex-end">
+    <p1 style="color: gray">(% - степень готовности к изучению)</p1>
+  </div>
   {% if iot %} {% for id, rank, elem, dop in itog_elec %}
   <div class="m-2 p-3" style="background-color: #dadcda">
     <div style="display: flex">
@@ -16,7 +19,10 @@
     {% endif %}
   </div>
   {% endfor %} {% else %}
-  <div><p1 class="fs-4">Выберите элективы для изучения ({{number}})</p1></div>
+  <div>
+    <p1 class="fs-4">Выберите элективы для изучения ({{number}})</p1>
+    <p1 style="color: gray">(% - степень соответсвия выбранной профессии)</p1>
+  </div>
   <form method="post">
     {% csrf_token %}
 
